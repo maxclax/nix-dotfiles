@@ -112,7 +112,3 @@ nx-rollback     # Roll back to previous generation
 ```bash
 ssh dev@<host-ip>   # find IP with: ip a
 ```
-
-## License
-
-MIT
