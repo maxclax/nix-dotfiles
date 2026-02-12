@@ -41,5 +41,20 @@
       };
   in {
     nixosConfigurations = nixpkgs.lib.mapAttrs (name: _: mkHost name) allVars.hosts;
+
+    templates = {
+      default = {
+        description = "NixOS dotfiles with GUI and headless multi-host support";
+        path = ./.;
+      };
+      gui = {
+        description = "NixOS with GNOME desktop, i3, and GUI apps";
+        path = ./.;
+      };
+      headless = {
+        description = "NixOS headless server (CLI only)";
+        path = ./.;
+      };
+    };
   };
 }
