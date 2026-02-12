@@ -26,7 +26,6 @@
       hostDir = ./hosts + "/${hostVars.profile}";
     in
       nixpkgs.lib.nixosSystem {
-        system = hostVars.platform;
         specialArgs = {inherit inputs vars;};
         modules = [
           (hostDir + "/configuration.nix")

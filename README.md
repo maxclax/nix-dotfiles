@@ -8,7 +8,7 @@ Opinionated, multi-host NixOS + Home Manager flake with GUI and headless profile
 - **Profile-based** — `gui` (GNOME + i3) and `headless` (CLI-only) profiles, pick per host
 - **Single config file** — all user/host variables in one `vars.nix`
 - **Auto-generated hosts** — add a host to `vars.nix`, flake picks it up automatically
-- **Per-platform support** — `aarch64-linux`, `x86_64-linux`, or any nixpkgs platform
+- **Auto-detect platform** — `aarch64-linux`, `x86_64-linux`, etc. detected from `hardware-configuration.nix`
 - **Flake template** — use as a starting point for your own dotfiles
 - **Shell aliases** — `nx-switch`, `nx-update`, `nx-clean` and more, auto-configured per host
 
@@ -28,7 +28,7 @@ Opinionated, multi-host NixOS + Home Manager flake with GUI and headless profile
 
 ```
 flake.nix                         # Entry point, auto-generates hosts from vars.nix
-vars.nix                          # All variables: user, hosts, platforms
+vars.nix                          # All variables: user, hosts, profiles
 nixos/
   base.nix                        # Shared NixOS: boot, network, locale, user, packages
   desktop.nix                     # GNOME, X11, sound, printing (GUI only)
@@ -50,7 +50,7 @@ hosts/
 nix flake init -t github:maxclax/nix-dotfiles
 ```
 
-Edit `vars.nix` with your username, email, hostname, and platform.
+Edit `vars.nix` with your username, email, and hostname.
 
 ### Adding a new host
 
@@ -66,7 +66,6 @@ Just add an entry to `vars.nix`:
     myhost = {
       hostname = "myhost";
       profile = "gui";        # or "headless"
-      platform = "x86_64-linux";
       flakePath = "~/nix-dotfiles";
     };
   };
