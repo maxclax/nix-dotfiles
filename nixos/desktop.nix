@@ -1,6 +1,6 @@
 # Desktop environment: GNOME, X11, sound, printing
 # Import this only on hosts with a display (e.g. VM)
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
 {
   # Enable the X11 windowing system.
@@ -31,7 +31,7 @@
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = false;
-  services.displayManager.autoLogin.user = "dev";
+  services.displayManager.autoLogin.user = vars.username;
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
